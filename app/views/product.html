@@ -1,0 +1,124 @@
+<!--modal form-->
+  <div class="modal fade" id="formProduct" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="dialog">
+      <div class="modal-content" role="content">
+        <div class="modal-header">
+          <button class="close" data-dismiss="modal">
+            <span aria-hidden="true">Close</span>
+          </button>
+          <br/>
+          <h4>Manage Product</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Nama :</label>
+              <div class="col-lg-7">
+                <input type="text" class="form-control"
+                placeholder="Nama Produk"
+                ng-model="produk.nama"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Deskripsi :</label>
+              <div class="col-lg-7">
+                <textarea class="form-control"
+                placeholder="Deskripsi Produk"
+                ng-model="produk.deskripsi"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Gudang :</label>
+              <div class="col-lg-7">
+                <select class="form-control" ng-model="produk.gudang"
+                ng-options="gudang as gudang.nama for gudang in gudangList track by gudang.idgudang"
+                ></select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Harga :</label>
+              <div class="col-lg-6">
+                <input type="number" class="form-control" name="harga"
+                placeholder="Harga Produk"
+                ng-model="produk.harga"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Kadaluarsa :</label>
+              <div class="col-lg-6">
+                <input type="text" class="form-control" name="tanggalKadaluarsa"
+                placeholder="format date:  yyyy-MM-dd"
+                ng-model="produk.tanggalKadaluarsa"/>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success" ng-click="handlingSimpanUpdates()">
+            <span class="glyphicon glyphicon-ok"></span>
+            Ok
+          </button>
+          <button class="btn btn-success" data-dismiss="modal">
+            <span class="glyphicon glyphicon-transfer"></span>
+            Batal
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--modal form-->
+
+<div class="row">
+  <h3>Product List</h3>
+  <hr/>
+  <button class="btn btn-success" ng-click="openFormProduk()" data-toggle="modal" data-target="#formProduct">
+    <span class="glyphicon glyphicon-plus-sign"></span>
+    Tambah Data
+  </button>
+  <hr/>
+  <table class="table table-hover table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Kode Produk</th>
+        <th>Nama</th>
+        <th>deskripsi</th>
+        <th>harga</th>
+        <th>kadaluarsa</th>
+        <th>gudang</th>
+        <th>Opsi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="produk in productList">
+          <td>{{produk.idproduk}}</td>
+          <td>{{produk.nama}}</td>
+          <td>{{produk.deskripsi}}</td>
+          <td>{{produk.harga}}</td>
+          <td>{{produk.tanggalKadaluarsa}}</td>
+          <td>{{produk.gudang.nama}}</td>
+          <td>
+            <button type="button" class="btn btn-success"
+            data-toggle="modal" data-target="#formProduct"
+            ng-click="editProduct(produk)"
+            >
+              <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+            <button type="button" class="btn btn-success">
+              <span class="glyphicon glyphicon-trash"></span>
+            </button>
+          </td>
+      </tr>
+    </tbod>
+    <tfoot>
+      <tr>
+        <th>Kode Produk</th>
+        <th>Nama</th>
+        <th>deskripsi</th>
+        <th>harga</th>
+        <th>kadaluarsa</th>
+        <th>gudang</th>
+        <th>Opsi</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>

@@ -1,0 +1,85 @@
+<!--modal gudang-->
+  <div class="modal fade" id="formGudang" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="dialog">
+      <div class="modal-content" role="document">
+        <div class="modal-header">
+          <button class="close" data-dismiss="modal" data-dismiss="modal">
+            <span aria-hidden="true">Close</span>
+          </button>
+          <br/>
+          <h4>Manage Gudang Form</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Nama:</label>
+              <div class="col-lg-6">
+                <input type="text" class="form-control" name="nama"
+                placeholder="Nama Gudang"
+                ng-model="selectedGudang['nama']"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Deskripsi :</label>
+              <div class="col-lg-6">
+                <input type="text" class="form-control"
+                ng-model="selectedGudang['deskripsi']"
+                placeholder="Deskripsi Gudang" name="deskripsi"/>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success" ng-click="updateSimpanHandling()">
+            <span class="glyphicon glyphicon-ok"></span>
+            Ok
+          </button>
+          <button class="btn btn-success" data-dismiss="modal">
+            <span class="glyphicon glyphicon-circle-arrow-right"></span>
+            Batal
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--modal gudang-->
+
+
+<div class="row">
+  <button class="btn btn-success" ng-click="tambahGudang()" data-toggle="modal" data-target="#formGudang">
+    <span class="glyphicon glyphicon-plus-sign"></span>
+    Tambah Gudang
+  </button>
+  <hr/>
+  <table class="table table-bordered table-hover table-striped">
+    <thead>
+      <tr>
+        <th>kode gudang</th>
+        <th>Nama Gudang</th>
+        <th>Deskripsi Gudang</th>
+        <th>Option</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="gudang in gudangList">
+        <td>{{gudang.idgudang}}</td>
+        <td>{{gudang.nama}}</td>
+        <td>{{gudang.deskripsi}}</td>
+        <td>
+          <button class="btn btn-success" ng-click="editGudang(gudang)">
+            <span class="glyphicon glyphicon-pencil"></span>
+          </button>
+          <button class="btn btn-success" ng-click="deleteGudang(gudang)">
+            <span class="glyphicon glyphicon-trash"></span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <th>kode gudang</th>
+      <th>Nama Gudang</th>
+      <th>Deskripsi Gudang</th>
+      <th>Option</th>
+    </tfoot>
+  </table>
+</div>
